@@ -1,96 +1,170 @@
 import { Icons } from "@/components/icons";
 import { NavItem, SidebarNavItem } from "@/types";
-
-export type User = {
+export type Integration = {
   id: number;
   name: string;
   company: string;
-  role: string;
   verified: boolean;
-  status: string;
+  status: 'Active' | 'Inactive' | 'Pending Setup';
+  callbackUrl: string;
+  scope: string[];
+  reads: { name: string; description: string }[];
+  writes: { name: string; description: string }[];
+  lastSync: string; // Use ISO 8601 format for date and time (e.g., "2024-03-31T08:00:00Z")
+  createdAt: string;
+  updatedAt: string;
+  actions: { name: string; url: string }[];
+  performanceMetrics: {
+    dataTransferRate: string;
+    errorRate: string;
+    syncDuration: string;
+  };
+  healthStatus: { status: string; details: string };
+  permissionsManagement: { url: string };
+  notifications: { settingsUrl: string };
+  documentation: { url: string };
+  support: { url: string };
 };
-export const users: User[] = [
-  {
-    id: 1,
-    name: "Candice Schiner",
-    company: "Dell",
-    role: "Frontend Developer",
-    verified: false,
-    status: "Active",
-  },
-  {
-    id: 2,
-    name: "John Doe",
-    company: "TechCorp",
-    role: "Backend Developer",
-    verified: true,
-    status: "Active",
-  },
-  {
-    id: 3,
-    name: "Alice Johnson",
-    company: "WebTech",
-    role: "UI Designer",
-    verified: true,
-    status: "Active",
-  },
-  {
-    id: 4,
-    name: "David Smith",
-    company: "Innovate Inc.",
-    role: "Fullstack Developer",
-    verified: false,
-    status: "Inactive",
-  },
-  {
-    id: 5,
-    name: "Emma Wilson",
-    company: "TechGuru",
-    role: "Product Manager",
-    verified: true,
-    status: "Active",
-  },
-  {
-    id: 6,
-    name: "James Brown",
-    company: "CodeGenius",
-    role: "QA Engineer",
-    verified: false,
-    status: "Active",
-  },
-  {
-    id: 7,
-    name: "Laura White",
-    company: "SoftWorks",
-    role: "UX Designer",
-    verified: true,
-    status: "Active",
-  },
-  {
-    id: 8,
-    name: "Michael Lee",
-    company: "DevCraft",
-    role: "DevOps Engineer",
-    verified: false,
-    status: "Active",
-  },
-  {
-    id: 9,
-    name: "Olivia Green",
-    company: "WebSolutions",
-    role: "Frontend Developer",
-    verified: true,
-    status: "Active",
-  },
-  {
-    id: 10,
-    name: "Robert Taylor",
-    company: "DataTech",
-    role: "Data Analyst",
-    verified: false,
-    status: "Active",
-  },
-];
+
+
+ export const integrations: Integration[] = [
+   {
+     id: 1,
+     name: "GitHub Integration",
+     company: "GitHub",
+     verified: true,
+     status: "Active",
+     callbackUrl: "https://example.com/callback/github",
+     scope: ["read:user", "repo"],
+     reads: [
+       { name: "Read User Data", description: "Allows access to basic user information." },
+       { name: "Read Repository Data", description: "Allows access to repository details." },
+     ],
+     writes: [
+       { name: "Write Repository Data", description: "Allows creating and modifying repositories." },
+       { name: "Write User Data", description: "Allows modifying user information." },
+     ],
+     lastSync: "2024-03-31T08:00:00Z",
+     createdAt: "2023-01-15T12:00:00Z",
+     updatedAt: "2024-03-30T15:30:00Z",
+     actions: [
+       { name: "Edit Integration", url: "https://example.com/integrations/edit/github" },
+       { name: "Disconnect Integration", url: "https://example.com/integrations/disconnect/github" },
+       { name: "Refresh Sync", url: "https://example.com/integrations/refresh/github" },
+       { name: "View Logs", url: "https://example.com/integrations/logs/github" },
+     ],
+     performanceMetrics: {
+       dataTransferRate: "1 GB/day",
+       errorRate: "0.5%",
+       syncDuration: "5 seconds",
+     },
+     healthStatus: { status: "Healthy", details: "No issues reported" },
+     permissionsManagement: { url: "https://example.com/integrations/permissions/github" },
+     notifications: { settingsUrl: "https://example.com/integrations/notifications/github" },
+     documentation: { url: "https://developer.github.com" },
+     support: { url: "https://support.example.com" },
+   },
+   {
+     id: 2,
+     name: "Slack Integration",
+     company: "Slack",
+     verified: true,
+     status: "Active",
+     callbackUrl: "https://example.com/callback/slack",
+     scope: ["channels:read", "chat:write"],
+     reads: [
+       { name: "Read Channel Data", description: "Allows access to channel information." },
+       { name: "Read Chat Data", description: "Allows access to chat messages." },
+     ],
+     writes: [{ name: "Write Chat Messages", description: "Allows sending chat messages." }],
+     lastSync: "2024-03-31T10:00:00Z",
+     createdAt: "2023-02-20T09:30:00Z",
+     updatedAt: "2024-03-30T16:45:00Z",
+     actions: [
+       { name: "Edit Integration", url: "https://example.com/integrations/edit/slack" },
+       { name: "Disconnect Integration", url: "https://example.com/integrations/disconnect/slack" },
+       { name: "Refresh Sync", url: "https://example.com/integrations/refresh/slack" },
+       { name: "View Logs", url: "https://example.com/integrations/logs/slack" },
+     ],
+     performanceMetrics: {
+       dataTransferRate: "500 MB/day",
+       errorRate: "1%",
+       syncDuration: "10 seconds",
+     },
+     healthStatus: { status: "Healthy", details: "No issues reported" },
+     permissionsManagement: { url: "https://example.com/integrations/permissions/slack" },
+     notifications: { settingsUrl: "https://example.com/integrations/notifications/slack" },
+     documentation: { url: "https://api.slack.com" },
+     support: { url: "https://help.slack.com" },
+   },
+   {
+     id: 3,
+     name: "Snowflake Integration",
+     company: "Snowflake",
+     verified: true,
+     status: "Active",
+     callbackUrl: "https://example.com/callback/slack",
+     scope: ["channels:read", "chat:write"],
+     reads: [
+       { name: "Read Channel Data", description: "Allows access to channel information." },
+       { name: "Read Chat Data", description: "Allows access to chat messages." },
+     ],
+     writes: [{ name: "Write Chat Messages", description: "Allows sending chat messages." }],
+     lastSync: "2024-03-31T10:00:00Z",
+     createdAt: "2023-02-20T09:30:00Z",
+     updatedAt: "2024-03-30T16:45:00Z",
+     actions: [
+       { name: "Edit Integration", url: "https://example.com/integrations/edit/slack" },
+       { name: "Disconnect Integration", url: "https://example.com/integrations/disconnect/slack" },
+       { name: "Refresh Sync", url: "https://example.com/integrations/refresh/slack" },
+       { name: "View Logs", url: "https://example.com/integrations/logs/slack" },
+     ],
+     performanceMetrics: {
+       dataTransferRate: "500 MB/day",
+       errorRate: "1%",
+       syncDuration: "10 seconds",
+     },
+     healthStatus: { status: "Healthy", details: "No issues reported" },
+     permissionsManagement: { url: "https://example.com/integrations/permissions/slack" },
+     notifications: { settingsUrl: "https://example.com/integrations/notifications/slack" },
+     documentation: { url: "https://api.slack.com" },
+     support: { url: "https://help.slack.com" },
+   },
+   {
+     id: 4,
+     name: "Clickhouse Integration",
+     company: "Clickhouse",
+     verified: true,
+     status: "Active",
+     callbackUrl: "https://example.com/callback/slack",
+     scope: ["channels:read", "chat:write"],
+     reads: [
+       { name: "Read Channel Data", description: "Allows access to channel information." },
+       { name: "Read Chat Data", description: "Allows access to chat messages." },
+     ],
+     writes: [{ name: "Write Chat Messages", description: "Allows sending chat messages." }],
+     lastSync: "2024-03-31T10:00:00Z",
+     createdAt: "2023-02-20T09:30:00Z",
+     updatedAt: "2024-03-30T16:45:00Z",
+     actions: [
+       { name: "Edit Integration", url: "https://example.com/integrations/edit/slack" },
+       { name: "Disconnect Integration", url: "https://example.com/integrations/disconnect/slack" },
+       { name: "Refresh Sync", url: "https://example.com/integrations/refresh/slack" },
+       { name: "View Logs", url: "https://example.com/integrations/logs/slack" },
+     ],
+     performanceMetrics: {
+       dataTransferRate: "500 MB/day",
+       errorRate: "1%",
+       syncDuration: "10 seconds",
+     },
+     healthStatus: { status: "Healthy", details: "No issues reported" },
+     permissionsManagement: { url: "https://example.com/integrations/permissions/slack" },
+     notifications: { settingsUrl: "https://example.com/integrations/notifications/slack" },
+     documentation: { url: "https://api.slack.com" },
+     support: { url: "https://help.slack.com" },
+   },
+ ];
+
 
 export type Employee = {
   id: number;
