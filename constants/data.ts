@@ -34,7 +34,7 @@ export type Integration = {
      company: "GitHub",
      verified: true,
      status: "Active",
-     callbackUrl: "https://example.com/callback/github",
+     callbackUrl: "/github",
      scope: ["read:user", "repo"],
      reads: [
        { name: "Read User Data", description: "Allows access to basic user information." },
@@ -70,7 +70,7 @@ export type Integration = {
      company: "Slack",
      verified: true,
      status: "Active",
-     callbackUrl: "https://example.com/callback/slack",
+     callbackUrl: "/slack",
      scope: ["channels:read", "chat:write"],
      reads: [
        { name: "Read Channel Data", description: "Allows access to channel information." },
@@ -103,7 +103,7 @@ export type Integration = {
      company: "Snowflake",
      verified: true,
      status: "Active",
-     callbackUrl: "https://example.com/callback/slack",
+     callbackUrl: "/slack",
      scope: ["channels:read", "chat:write"],
      reads: [
        { name: "Read Channel Data", description: "Allows access to channel information." },
@@ -136,7 +136,7 @@ export type Integration = {
      company: "Clickhouse",
      verified: true,
      status: "Active",
-     callbackUrl: "https://example.com/callback/slack",
+     callbackUrl: "/slack",
      scope: ["channels:read", "chat:write"],
      reads: [
        { name: "Read Channel Data", description: "Allows access to channel information." },
