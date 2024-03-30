@@ -7,6 +7,8 @@ import { Integration } from "@/constants/data";
 import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { integrationColumns } from "./columns";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ProductForm } from "@/components/forms/product-form";
 
 interface IntegrationsList {
   data: Integration[];
@@ -23,8 +25,26 @@ export const IntegrationClient: React.FC<IntegrationsList> = ({ data }) => {
           className="text-xs md:text-sm"
           onClick={() => router.push(`/dashboard/user/new`)}
         >
-          <Plus className="mr-2 h-4 w-4" /> Add New
         </Button> */}
+        <Dialog>
+          <DialogTrigger>
+            <Plus className="mr-2 h-4 w-4" /> Add New
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Add new Integration</DialogTitle>
+              <DialogDescription>
+                <ProductForm
+                  categories={[
+                    { _id: "shirts", name: "shirts" },
+                    { _id: "pants", name: "pants" },
+                  ]}
+                  initialData={null}
+                />
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       </div>
       <Separator />
       <DataTable searchKey="name" columns={integrationColumns} data={data} />
