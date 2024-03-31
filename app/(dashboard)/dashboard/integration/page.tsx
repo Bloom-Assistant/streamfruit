@@ -2,7 +2,7 @@ import BreadCrumb from "@/components/breadcrumb";
 import { IntegrationClient } from "@/components/tables/user-tables/client";
 import { integrations } from "@/constants/data";
 
-const breadcrumbItems = [{ title: "User", link: "/dashboard/user" }];
+const breadcrumbItems = [{ title: "Integrations", link: "/dashboard/user" }];
 export default function page() {
   return (
     <>

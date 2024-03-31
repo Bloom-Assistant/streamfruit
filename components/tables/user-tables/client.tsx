@@ -20,7 +20,7 @@ export const IntegrationClient: React.FC<IntegrationsList> = ({ data }) => {
   return (
     <>
       <div className="flex items-start justify-between">
-        <Heading title={`Integrations (${data.length})`} description="Manage users (Client side table functionalities.)" />
+        <Heading title={`Integrations (${data.length})`} description="Manage Apps and integrations" />
         {/* <Button
           className="text-xs md:text-sm"
           onClick={() => router.push(`/dashboard/user/new`)}

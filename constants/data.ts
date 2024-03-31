@@ -193,10 +193,10 @@ export const navItems: NavItem[] = [
     label: "Dashboard",
   },
   {
-    title: "User",
-    href: "/dashboard/user",
+    title: "Integrations",
+    href: "/dashboard/integration",
     icon: "user",
-    label: "user",
+    label: "integration",
   },
   {
     title: "Employee",
